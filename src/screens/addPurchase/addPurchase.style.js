@@ -25,7 +25,7 @@ export default StyleSheet.create({
     },
     header: {
         height:hp(15),
-        backgroundColor:colors.primary,
+        backgroundColor:colors.secondary,
         flexDirection: 'row',
         justifyContent:'space-between',
         paddingTop:hp(3),
@@ -37,6 +37,52 @@ export default StyleSheet.create({
         color : "white",
         fontWeight:'600'
       },
+
+      card:{
+        marginTop:20,
+        borderRadius:15,
+        paddingBottom:20,
+        backgroundColor:colors.secondary
+      },
+      label: {
+        fontFamily: 'Axiforma-Regular',
+        fontWeight: '400',
+        fontSize: 14,
+        marginLeft: 18,
+        marginTop: 20,
+        color: 'white',
+      },
+      label1: {
+        fontFamily: 'Axiforma-Regular',
+        fontWeight: '400',
+        fontSize: 14,
+        marginTop: 10,
+        color: 'white',
+      },
+      textfield: {
+        flexDirection: 'row',
+        paddingHorizontal:15,
+        backgroundColor: '#F2F2F2',
+        height: 45,
+        width:wp(25),
+        borderRadius: 6,
+        marginTop: 5,
+      },
+      textfield1: {
+        flexDirection: 'row',
+        paddingHorizontal:15,
+        backgroundColor: '#F2F2F2',
+        height: 45,
+        width:wp(50),
+        borderRadius: 6,
+        marginTop: 5,
+      },
+      row:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        paddingHorizontal:wp(5)
+    },
+
     footer: {
         justifyContent: 'flex-end',
         marginVertical: 20,

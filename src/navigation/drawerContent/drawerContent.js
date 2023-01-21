@@ -9,7 +9,9 @@ import {
     DrawerContentScrollView,
     DrawerItem
 } from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import styles from './drawerContent.style';
 import { AuthContext } from '../../services/firebase/authProvider';
 import colors from '../../Assets/colors/colors';
@@ -22,7 +24,7 @@ export function DrawerContent(props) {
                 <View style={styles.drawerContent}>
                     <View style={styles.userInfoSection}>
                         <View style={{flex:1,marginTop: 15 }}>
-                            <Icon 
+                            <MaterialCommunityIcons 
                                 name="account-outline" 
                                 size={50}
                                 color={colors.white}
@@ -39,7 +41,7 @@ export function DrawerContent(props) {
                         <Drawer.Section style={styles.drawerSection}>
                             <DrawerItem 
                                 icon={({color, size}) => (
-                                    <Icon 
+                                    <MaterialCommunityIcons 
                                     name="home-outline" 
                                     color={color}
                                     size={size}
@@ -50,20 +52,21 @@ export function DrawerContent(props) {
                             />
                             <DrawerItem 
                                 icon={({color, size}) => (
-                                    <Icon 
+                                    <MaterialCommunityIcons 
                                     name="account-outline" 
                                     color={color}
                                     size={size}
                                     />
                                 )}
                                 label="Profile"
-                                // onPress={() => {props.navigation.navigate('ComingSoon')}}
+                                onPress={() => {props.navigation.navigate('Profile')}}
                             />
                             <DrawerItem 
                                 icon={({color, size}) => (
-                                    <Icon 
-                                    name="account-check-outline" 
+                                    <FontAwesome5 
+                                    name="file-invoice-dollar" 
                                     color={color}
+                                    style={{marginRight:5,}}
                                     size={size}
                                     />
                                 )}
@@ -72,8 +75,8 @@ export function DrawerContent(props) {
                             />
                             <DrawerItem 
                                 icon={({color, size}) => (
-                                    <Icon 
-                                    name="account-check-outline" 
+                                    <AntDesign 
+                                    name="piechart" 
                                     color={color}
                                     size={size}
                                     />
@@ -90,7 +93,7 @@ export function DrawerContent(props) {
                 <Drawer.Section style={styles.bottomDrawerSection}>
                     <DrawerItem 
                         icon={({color, size}) => (
-                            <Icon 
+                            <MaterialCommunityIcons 
                             name="exit-to-app" 
                             color={colors.white}
                             size={size}

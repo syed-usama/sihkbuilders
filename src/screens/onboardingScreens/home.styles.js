@@ -1,5 +1,9 @@
 import {StyleSheet, Dimensions} from 'react-native';
 const {height} = Dimensions.get('screen');
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import colors from '../../Assets/colors/colors';
 export default StyleSheet.create({
   backgroundStyle: {
@@ -20,11 +24,10 @@ export default StyleSheet.create({
   image: {
     // flex:1,
     // resizeMode: 'center',
-    height: 350,
-    maxHeight:350,
-    width:350,
-    maxWidth:350,
-    borderRadius:400/2
+    backgroundColor:'white',
+    height: wp(90),
+    width:wp(90),
+    borderRadius:wp(45)
   },
   subTitle: {
     fontFamily: 'Axiforma-Regular',

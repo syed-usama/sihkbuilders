@@ -12,7 +12,7 @@ import styles from './notifications.style';
 import {AuthContext} from '../../services/firebase/authProvider';
 import colors from '../../Assets/colors/colors';
 FontAwesome.loadFont();
-const Onboarding3 = ({navigation,route}) => {
+const Notifications = ({navigation,route}) => {
   const [isLoading, setLoading] = useState(false);
   const {user} = useContext(AuthContext);
   return (
@@ -47,4 +47,4 @@ const Onboarding3 = ({navigation,route}) => {
   );
 };
 
-export default Onboarding3;
+export default Notifications;

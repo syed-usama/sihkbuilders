@@ -6,6 +6,8 @@ import RegisterDevice from "../screens/registerScreens/registerDevice";
 import Home from "../screens/onboardingScreens/Home";
 import Onboarding5 from "../screens/onboardingScreens/Onboarding5";
 import ForgotPassword from "../screens/forgotPassword/forgotPassword";
+import Notifications from "../screens/dashboardScreens/notifications";
+import AddPurchase from "../screens/addPurchase/addPurchase";
 
 
 const Stack = createStackNavigator();
@@ -28,8 +30,9 @@ const DashboardStackNavigator = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen component={DashboardDrawer} name="Dashboard" />
         <Stack.Screen component={Profile} name="Profile" />
-        <Stack.Screen component={Profile} name="Notifications" />
+        <Stack.Screen component={Notifications} name="Notifications" />
         <Stack.Screen component={RegisterDevice} name="RegisterDevice" />
+        <Stack.Screen component={AddPurchase} name="AddPurchase" />
       </Stack.Navigator>
   );
 }
