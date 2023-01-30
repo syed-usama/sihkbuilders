@@ -1,13 +1,14 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { DashboardDrawer } from "./drawerNavigator";
-import Profile from "../screens/dashboardScreens/profile";
-import RegisterDevice from "../screens/registerScreens/registerDevice";
+import Profile from "../screens/dashboardScreens/profile/profile";
+import RegisterDevice from "../screens/dashboardScreens/addExpense/registerDevice";
 import Home from "../screens/onboardingScreens/Home";
 import Onboarding5 from "../screens/onboardingScreens/Onboarding5";
 import ForgotPassword from "../screens/forgotPassword/forgotPassword";
-import Notifications from "../screens/dashboardScreens/notifications";
-import AddPurchase from "../screens/addPurchase/addPurchase";
+import AddPurchase from "../screens/dashboardScreens/addPurchase/addPurchase";
+import Notifications from "../screens/dashboardScreens/notification/notifications";
+import Expenses from "../screens/dashboardScreens/expenseDetail/expenses";
 
 
 const Stack = createStackNavigator();
@@ -33,6 +34,7 @@ const DashboardStackNavigator = () => {
         <Stack.Screen component={Notifications} name="Notifications" />
         <Stack.Screen component={RegisterDevice} name="RegisterDevice" />
         <Stack.Screen component={AddPurchase} name="AddPurchase" />
+        <Stack.Screen component={Expenses} name="Expenses" />
       </Stack.Navigator>
   );
 }

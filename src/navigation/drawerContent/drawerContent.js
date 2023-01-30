@@ -82,7 +82,7 @@ export function DrawerContent(props) {
                                     />
                                 )}
                                 label="Expense"
-                                // onPress={() => {props.navigation.navigate('StoreSupport')}}
+                                onPress={() => {props.navigation.navigate('Expenses')}}
                             />
                         </Drawer.Section>
                         </DrawerContentScrollView>
