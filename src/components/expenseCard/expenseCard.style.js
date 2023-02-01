@@ -12,7 +12,6 @@ card:{
 cardtextandtillView:{
     marginTop:hp(2),
     width:wp(90),
-    backgroundColor:'#F2F2F7',
     flexDirection:'row',
     justifyContent:'space-between',
     paddingHorizontal:10
@@ -28,7 +27,6 @@ texttillid:{
 projectnameView:{
     marginTop:5,
     width:wp(90),
-    backgroundColor:'#F2F2F7',
     flexDirection:'row',
     paddingHorizontal:10,
     justifyContent:'space-between'
@@ -41,11 +39,9 @@ textprojectname:{
 iconsView:{
     marginTop:hp(1.5),
     width:wp(90),
-    backgroundColor:'#F2F2F7',
     flexDirection:'row',
 },
 expandablecardView:{
-    backgroundColor:'#F2F2F7',
     width:wp(90),
     paddingHorizontal:10,
     marginBottom:10,

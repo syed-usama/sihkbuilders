@@ -130,4 +130,105 @@ export default StyleSheet.create({
         fontSize:18,
         color : "black"
     },
+    table:{
+      marginTop:20,
+      borderWidth:4,
+      borderRadius:10,
+      borderColor:colors.secondary,
+    },
+headerRow:{
+  backgroundColor:colors.secondary,
+  flexDirection:'row',
+  height:hp(6),
+  alignItems:'center',
+  paddingHorizontal:10
+},
+tableText0:{
+  width:wp(5),
+  color:'white',
+  fontSize:14,
+  fontWeight:'500'
+},
+tableText1:{
+  width:wp(40),
+  color:'white',
+  fontSize:14,
+  fontWeight:'500'
+},
+tableText2:{
+  width:wp(20),
+  color:'white',
+  textAlign:'center',
+  fontSize:14,
+  fontWeight:'500'
+},
+tableText3:{
+  width:wp(25),
+  color:'white',
+  textAlign:'center',
+  fontSize:14,
+  fontWeight:'500'
+},
+tableRow:{
+  flexDirection:'row',
+  height:hp(4),
+  alignItems:'center',
+  paddingHorizontal:10
+},
+rowText0:{
+  height:hp(4),
+  width:wp(5),
+  color:'grey',
+  fontWeight:'500',
+  textAlignVertical:'center',
+  fontSize:13,
+  borderRightWidth:2,
+  borderColor:colors.secondary,
+},
+rowText1:{
+  paddingLeft:5,
+  height:hp(4),
+  width:wp(43),
+  color:'grey',
+  fontWeight:'500',
+  textAlignVertical:'center',
+  fontSize:13,
+  borderRightWidth:2,
+  borderColor:colors.secondary,
+},
+rowText2:{
+  height:hp(4),
+  width:wp(15),
+  color:'grey',
+  fontWeight:'500',
+  textAlignVertical:'center',
+  textAlign:'center',
+  fontSize:13,
+  borderRightWidth:2,
+  borderColor:colors.secondary,
+},
+rowText3:{
+  height:hp(4),
+  width:wp(28),
+  color:'grey',
+  fontWeight:'500',
+  textAlignVertical:'center',
+  textAlign:'center',
+  fontSize:13,
+},
+button:{
+  marginTop:20,
+  alignSelf:'center',
+  height:hp(4.5),
+  backgroundColor:'white',
+  borderRadius:10,
+  width:wp(35),
+  alignItems:'center',
+  justifyContent:'center'
+},
+buttonText:{
+  fontSize:14,
+  fontWeight:'600',
+  color:'black'
+},
 });

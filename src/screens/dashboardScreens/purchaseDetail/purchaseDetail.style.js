@@ -24,7 +24,6 @@ export default StyleSheet.create({
     fontWeight: '600',
   },
   footer: {
-    paddingVertical:20,
     height: hp(90),
     backgroundColor: 'white',
     borderTopLeftRadius: 50,

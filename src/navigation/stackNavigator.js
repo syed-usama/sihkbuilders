@@ -9,6 +9,7 @@ import ForgotPassword from "../screens/forgotPassword/forgotPassword";
 import AddPurchase from "../screens/dashboardScreens/addPurchase/addPurchase";
 import Notifications from "../screens/dashboardScreens/notification/notifications";
 import Expenses from "../screens/dashboardScreens/expenseDetail/expenses";
+import PurchaseDetail from "../screens/dashboardScreens/purchaseDetail/purchaseDetail";
 
 
 const Stack = createStackNavigator();
@@ -34,6 +35,7 @@ const DashboardStackNavigator = () => {
         <Stack.Screen component={Notifications} name="Notifications" />
         <Stack.Screen component={RegisterDevice} name="RegisterDevice" />
         <Stack.Screen component={AddPurchase} name="AddPurchase" />
+        <Stack.Screen component={PurchaseDetail} name="PurchaseDetail" />
         <Stack.Screen component={Expenses} name="Expenses" />
       </Stack.Navigator>
   );

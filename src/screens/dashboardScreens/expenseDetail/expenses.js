@@ -2,7 +2,8 @@ import { View, Text, TouchableOpacity,ScrollView } from "react-native";
 import React,{useState,useEffect} from "react";
 import styles from "./expenses.style";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import ExpandableCard from '../../../components/expandable card/expandablecard';
+import ExpenseCard from "../../../components/expenseCard/expenseCard";
+import { FlatList } from "react-native";
 
 function Expenses({navigation}){
 
@@ -14,41 +15,34 @@ function Expenses({navigation}){
   const dummyData = [
     {
       project_name: "THQ HOSPITAL",
-      project_date:"23 january 2012",
-      project_amount: "Rs 1000",
+      project_date:"5 January 2012",
+      project_amount: "Rs 15000",
       id: 1,
       project_type: "Labour cost",
-      project_pay_type: "Cash",
+      project_pay_type: "Pay Order",
       project_pay_ref: "Nazeer",
       project_note: "EASYPAISA",
-      project_purchase_supplier:"RAJA",
-      project_purchase_billid:"55919",
-      project_purchase_supplierid:"1",
-      project_purchase_no_of_items:"1 Items",
-      project_purchase_totalamount:"305,564",
-      project_purchase_paidamount:"305,564",
-      project_purchase_pendingamount:"0",
     },
       
     
     {
       project_name: "THQ HOSPITAL",
-      project_date:"23 january 2013",
-      project_amount: "Rs 2000",
+      project_date:"26 December 2013",
+      project_amount: "Rs 5000",
       id: 2,
       project_type: "Fuel",
       project_pay_type: "Online",
-      project_pay_ref: "Usama Khalid",
+      project_pay_ref: "Ghafoor",
       project_note: "JAZZCASH"
     },
     {
       project_name: "THQ HOSPITAL",
-      project_date:"23 january 2014",
-      project_amount: "Rs 3000",
+      project_date:"24 December 2014",
+      project_amount: "Rs 12000",
       id: 3,
       project_type: "Ajustment",
       project_pay_type: "Cash",
-      project_pay_ref: "Khalid",
+      project_pay_ref: "Nazeer",
       project_note: "MEEZAN BANK"
     },
   ];
@@ -59,17 +53,16 @@ function Expenses({navigation}){
         <TouchableOpacity onPress={()=> navigation.goBack()}>
         <FontAwesome name="chevron-left" size={22} color={"white"} />
         </TouchableOpacity>
-        <Text style={styles.textheader}> Purchase Detail </Text>
+        <Text style={styles.textheader}> Expense Detail </Text>
       </View>
-      <ScrollView>
       <View style={styles.footer}>
-    {dummyData.map((item,index)=>{
-        return (
-          <ExpandableCard item={item} index={index}/>
-        )    
-    })}
+        <FlatList
+        data={dummyData}
+        showsVerticalScrollIndicator={false}
+    renderItem={({item,index})=> (
+          <ExpenseCard item={item} index={index} key={index}/>    
+    )}/>
       </View>
-      </ScrollView>
     </View>
   );
 };

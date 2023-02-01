@@ -1,14 +1,15 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React,{useState} from "react";
-import styles from "../expandable card/expandablecartStyle";
+import styles from "./purchaseCard.style"
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import colors from "../../Assets/colors/colors";
 
-function expandablecard({ item, index }) {
+function PurchaseCard({ item, index }) {
 
     const [visible,setvisible] = useState(false);
 
@@ -26,7 +27,7 @@ function expandablecard({ item, index }) {
             <MaterialCommunityIcons
               name="delete"
               size={25}
-              color={"red"}
+              color={colors.primary}
               style={{ alignSelf: "center" }}
             />
           </TouchableOpacity>
@@ -86,4 +87,4 @@ function expandablecard({ item, index }) {
   );
 }
 
-export default expandablecard;
+export default PurchaseCard;

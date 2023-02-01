@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Platform,
   Image,
+  Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import style from '../../../styles/globle.style';
@@ -16,6 +17,7 @@ import styles from './registerDevice.style';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {AuthContext} from '../../../services/firebase/authProvider';
 import colors from '../../../Assets/colors/colors';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -76,9 +78,47 @@ const RegisterDevice = ({navigation, route}) => {
   ]);
   const [receiptImage, setReceiptImage] = useState('');
   const [serialNo, setserialNo] = useState('');
+  const [payRef, setPayRef] = useState('');
+  const [amount, setAmount] = useState('');
+  const [note, setNote] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [date, setDate] = useState('');
+  const [loader, setLoader] = useState(false);
+  const monthNames = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'December',
+  ];
   const {user} = useContext(AuthContext);
 
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    hideDatePicker();
+    let seleDate =
+      date.getDate() +
+      ' ' +
+      monthNames[date.getMonth()] +
+      ' ' +
+      date.getFullYear();
+    setDate(seleDate);
+  };
   const openGallery = () => {
     ImagePicker.openPicker({})
       .then(image => {
@@ -103,6 +143,13 @@ const RegisterDevice = ({navigation, route}) => {
         console.log(e);
       });
   };
+  const save = () =>{
+    setLoader(true)
+    setTimeout(() => {
+      setLoader(false)
+      Alert.alert('Alert..!','Your request to upload data is received. We will let you know when record is uploaded')
+    }, 2000);
+  }
   return (
     <SafeAreaView style={styles.container}>
       {isLoading ? (
@@ -159,8 +206,8 @@ const RegisterDevice = ({navigation, route}) => {
                 placeholder="Enter amount"
                 placeholderTextColor={'#949693'}
                 style={[style.textfieldText]}
-                value={serialNo}
-                onChangeText={value => setserialNo(value)}
+                value={amount}
+                onChangeText={value => setAmount(value)}
               />
             </View>
           </View>
@@ -168,8 +215,9 @@ const RegisterDevice = ({navigation, route}) => {
           <View>
             <Text style={style.label}>Date *</Text>
             <TouchableOpacity
+              onPress={() => showDatePicker()}
               style={[style.textfield2, {justifyContent: 'center'}]}>
-              <Text style={style.picker}>Select Date</Text>
+              <Text style={style.picker}>{date ? date : 'Select Date'}</Text>
             </TouchableOpacity>
           </View>
 
@@ -192,8 +240,8 @@ const RegisterDevice = ({navigation, route}) => {
                 placeholder="Enter ref no. of expense"
                 placeholderTextColor={'#949693'}
                 style={[style.textfieldText]}
-                value={serialNo}
-                onChangeText={value => setserialNo(value)}
+                value={payRef}
+                onChangeText={value => setPayRef(value)}
               />
             </View>
           </View>
@@ -227,15 +275,20 @@ const RegisterDevice = ({navigation, route}) => {
                 placeholder="Enter note"
                 placeholderTextColor={'#949693'}
                 style={[style.textfieldText]}
-                value={serialNo}
-                onChangeText={value => setserialNo(value)}
+                value={note}
+                onChangeText={value => setNote(value)}
               />
             </View>
           </View>
           <View style={styles.footer}>
-            <TouchableOpacity activeOpacity={0.7}>
-              <View style={style.blueButton}>
+          <TouchableOpacity onPress={()=> save()} disabled={loader}>
+              <View
+                style={[style.blueButton, {backgroundColor: colors.primary,alignItems:'center'}]}>
+                  {loader ?
+                  <ActivityIndicator size={24} color={'white'}/>
+                  :
                 <Text style={style.whiteButtonText}>Save</Text>
+                  }
               </View>
             </TouchableOpacity>
           </View>
@@ -346,6 +399,12 @@ const RegisterDevice = ({navigation, route}) => {
           </View>
         </View>
       </ActionSheet>
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
     </SafeAreaView>
   );
 };

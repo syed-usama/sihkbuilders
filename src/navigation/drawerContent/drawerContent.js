@@ -71,7 +71,7 @@ export function DrawerContent(props) {
                                     />
                                 )}
                                 label="Purchase"
-                                // onPress={() => {props.navigation.navigate('StoreSupport')}}
+                                onPress={() => {props.navigation.navigate('PurchaseDetail')}}
                             />
                             <DrawerItem 
                                 icon={({color, size}) => (

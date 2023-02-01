@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Platform,
   Image,
+  Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import style from '../../../styles/globle.style';
@@ -16,9 +17,12 @@ import styles from './addPurchase.style';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {AuthContext} from '../../../services/firebase/authProvider';
 import colors from '../../../Assets/colors/colors';
 import ImagePicker from 'react-native-image-crop-picker';
+import {FlatList} from 'react-native';
+import {KeyboardAvoidingView} from 'native-base';
 FontAwesome.loadFont();
 const AddPurchase = ({navigation, route}) => {
   const [project, setProject] = useState({name: '-- Select --'});
@@ -68,8 +72,49 @@ const AddPurchase = ({navigation, route}) => {
   ]);
   const [receiptImage, setReceiptImage] = useState('');
   const [serialNo, setserialNo] = useState('');
+  const [billNo, setBillNo] = useState(0);
+  const [amount, setAmount] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [date, setDate] = useState('');
+  const [itemsArray, setItemsArray] = useState([]);
+  const monthNames = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'December',
+  ];
   const [isLoading, setLoading] = useState(false);
+  const [loader, setLoader] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const {user} = useContext(AuthContext);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    hideDatePicker();
+    let seleDate =
+      date.getDate() +
+      ' ' +
+      monthNames[date.getMonth()] +
+      ' ' +
+      date.getFullYear();
+    setDate(seleDate);
+  };
 
   const openGallery = () => {
     ImagePicker.openPicker({})
@@ -95,6 +140,13 @@ const AddPurchase = ({navigation, route}) => {
         console.log(e);
       });
   };
+  const save = () =>{
+    setLoader(true)
+    setTimeout(() => {
+      setLoader(false)
+      Alert.alert('Alert..!','Your request to upload data is received. We will let you know when record is uploaded')
+    }, 2000);
+  }
   return (
     <SafeAreaView style={styles.container}>
       {isLoading ? (
@@ -146,8 +198,9 @@ const AddPurchase = ({navigation, route}) => {
           <View>
             <Text style={style.label}>Date *</Text>
             <TouchableOpacity
+              onPress={() => showDatePicker()}
               style={[style.textfield2, {justifyContent: 'center'}]}>
-              <Text style={style.picker}>Select Date</Text>
+              <Text style={style.picker}>{date ? date : 'Select Date'}</Text>
             </TouchableOpacity>
           </View>
 
@@ -157,10 +210,10 @@ const AddPurchase = ({navigation, route}) => {
               <TextInput
                 placeholder="Enter supplier bill no"
                 placeholderTextColor={'#949693'}
-                keyboardType='number-pad'
+                keyboardType="number-pad"
                 style={[style.textfieldText]}
-                value={serialNo}
-                onChangeText={value => setserialNo(value)}
+                value={billNo}
+                onChangeText={value => setBillNo(value)}
               />
             </View>
           </View>
@@ -183,17 +236,16 @@ const AddPurchase = ({navigation, route}) => {
             </View>
 
             <View style={styles.row}>
-
               <View style={styles.email}>
                 <Text style={styles.label1}>Unit Quantity *</Text>
                 <View style={[styles.textfield]}>
                   <TextInput
                     placeholder="0"
                     placeholderTextColor={'#949693'}
-                    keyboardType='number-pad'
+                    keyboardType="number-pad"
                     style={[style.textfieldText]}
-                    value={serialNo}
-                    onChangeText={value => setserialNo(value)}
+                    value={quantity}
+                    onChangeText={value => setQuantity(value)}
                   />
                 </View>
               </View>
@@ -204,16 +256,52 @@ const AddPurchase = ({navigation, route}) => {
                   <TextInput
                     placeholder="0"
                     placeholderTextColor={'#949693'}
-                    keyboardType='number-pad'
+                    keyboardType="number-pad"
                     style={[style.textfieldText]}
-                    value={serialNo}
-                    onChangeText={value => setserialNo(value)}
+                    value={amount}
+                    onChangeText={value => setAmount(value)}
                   />
                 </View>
               </View>
-
-
             </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                var newobj = {
+                  name: pitem.name,
+                  quantity: quantity,
+                  amount: amount,
+                };
+                itemsArray.push(newobj);
+                setItemsArray(itemsArray);
+                setRefresh(!refresh);
+              }}
+              style={styles.button}>
+              <Text style={styles.buttonText}>Add item</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.table}>
+            <View style={styles.headerRow}>
+              <Text style={styles.tableText0}>#</Text>
+              <Text style={styles.tableText1}>Name</Text>
+              <Text style={styles.tableText2}>Quantity</Text>
+              <Text style={styles.tableText3}>Amount</Text>
+            </View>
+            <ScrollView horizontal>
+              <FlatList
+                data={itemsArray}
+                refreshing={refresh}
+                style={{margin: 0}}
+                renderItem={({item, index}) => (
+                  <View style={styles.tableRow}>
+                    <Text style={styles.rowText0}>{index+1}</Text>
+                    <Text style={styles.rowText1}>{item.name}</Text>
+                    <Text style={styles.rowText2}>{item.quantity}</Text>
+                    <Text style={styles.rowText3}>{item.amount}</Text>
+                  </View>
+                )}
+              />
+            </ScrollView>
           </View>
 
           {/* <View>
@@ -240,9 +328,14 @@ const AddPurchase = ({navigation, route}) => {
           </View> */}
 
           <View style={styles.footer}>
-            <TouchableOpacity activeOpacity={0.7}>
-              <View style={[style.blueButton,{backgroundColor:colors.secondary}]}>
+            <TouchableOpacity onPress={()=> save()} disabled={loader}>
+              <View
+                style={[style.blueButton, {backgroundColor: colors.secondary,alignItems:'center'}]}>
+                  {loader ?
+                  <ActivityIndicator size={24} color={'white'}/>
+                  :
                 <Text style={style.whiteButtonText}>Save</Text>
+                  }
               </View>
             </TouchableOpacity>
           </View>
@@ -353,6 +446,12 @@ const AddPurchase = ({navigation, route}) => {
           </View>
         </View>
       </ActionSheet>
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
     </SafeAreaView>
   );
 };
