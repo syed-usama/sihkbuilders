@@ -22,7 +22,7 @@ export default StyleSheet.create({
     flex:3,
     fontFamily: 'Axiforma-Regular',
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 15,
     color: 'white',
     marginLeft:5,
 

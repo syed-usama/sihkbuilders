@@ -9,73 +9,54 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../Assets/colors/colors';
 
-function ExpenseCard({item, index}) {
+function ExpenseCard({navigation, item, index}) {
   const [visible, setvisible] = useState(false);
-
+  const monthNames = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const getDate = mdate => {
+    const myArray = mdate.split('-');
+    var mont = parseInt(myArray[1]);
+    const newDate = myArray[2] + ' ' + monthNames[mont - 1] + ' ' + myArray[0];
+    return newDate;
+  };
   return (
-    <TouchableOpacity style={styles.card} onPress={() => setvisible(!visible)}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('DetailScreen', {detail: item})}>
       <View style={styles.cardtextandtillView}>
-        <Text style={styles.textdate}>{item.project_date}</Text>
-        <Text style={styles.texttillid}>{item.project_amount}</Text>
+        <Text style={styles.texttillid}></Text>
+        <Text style={styles.textdate}>{getDate(item.exp_date)}</Text>
       </View>
 
       <View style={styles.projectnameView}>
         <Text style={styles.textprojectname}>{item.project_name}</Text>
-        <TouchableOpacity style={{right: wp(2)}}>
-          <MaterialCommunityIcons
-            name="delete"
-            size={25}
-            color={colors.primary}
-            style={{alignSelf: 'center'}}
-          />
-        </TouchableOpacity>
       </View>
-
-      {visible && (
-        <View style={styles.expandablecardView}>
-          <Text style={{flexDirection: 'row', marginTop: 5}}>
-            <Text style={{fontWeight: 'bold', fontSize: 15, color: 'black'}}>
-              Expense Type:{' '}
-            </Text>
-            <Text style={styles.textexpensetype}>
-              {item.project_type}
-            </Text>
+      <View style={styles.expandablecardView}>
+        <Text style={{flexDirection: 'row', marginTop: 5}}>
+          <Text style={{fontWeight: 'bold', fontSize: 15, color: 'black'}}>
+            Expense Type:{' '}
           </Text>
+          <Text style={styles.textexpensetype}>{item.expense_type}</Text>
+        </Text>
 
-          <Text style={{flexDirection: 'row', marginTop: 5}}>
-            <Text style={{fontWeight: 'bold', fontSize: 15, color: 'black'}}>
-              Pay Type:{' '}
-            </Text>
-            <Text style={styles.textexpensetype}>
-              {item.project_pay_type}
-            </Text>
+        <Text style={{flexDirection: 'row', marginTop: 5}}>
+          <Text style={{fontWeight: 'bold', fontSize: 15, color: 'black'}}>
+            Expense Amount:{' '}
           </Text>
-
-          <Text style={{flexDirection: 'row', marginTop: 5}}>
-            <Text style={{fontWeight: 'bold', fontSize: 15, color: 'black'}}>
-              Pay Ref:{' '}
-            </Text>
-            <Text style={styles.textexpensepaytype}>
-              {item.project_pay_ref}
-            </Text>
-          </Text>
-
-          <Text style={{flexDirection: 'row', marginTop: 5}}>
-            <Text style={{fontWeight: 'bold', fontSize: 15, color: 'black'}}>
-              Note:{' '}
-            </Text>
-            <Text style={styles.textexpensepayref}>{item.project_note}</Text>
-          </Text>
-        </View>
-      )}
-
-      <View style={{left: wp(2.5), alignItems: 'flex-end'}}>
-        <MaterialIcons
-          name={visible ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
-          size={25}
-          color={'black'}
-          style={{alignSelf: 'center'}}
-        />
+          <Text style={styles.textexpensetype}>{item.exp_amount}</Text>
+        </Text>
       </View>
     </TouchableOpacity>
   );

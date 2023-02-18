@@ -116,7 +116,7 @@ const Profile = ({navigation}) => {
             </ImageBackground>
           )}
           <Text style={styles.headerText}>
-            {user.name} 
+            {user.use_name} 
           </Text>
         </View>
         <View style={styles.body}>
@@ -126,13 +126,13 @@ const Profile = ({navigation}) => {
           <View style={styles.devices}>
             <View style={styles.deviceContent}>
               <Text style={styles.title}>Mobile Number</Text>
-              <Text style={styles.subTitle}>{user.phone}</Text>
+              <Text style={styles.subTitle}>{user.use_phone}</Text>
             </View>
           </View>
           <View style={styles.devices}>
             <View style={styles.deviceContent}>
               <Text style={styles.title}>Email Address</Text>
-              <Text style={styles.subTitle}>{user.email}</Text>
+              <Text style={styles.subTitle}>{user.use_email}</Text>
             </View>
           </View>
           <TouchableOpacity activeOpacity={0.7} onPress={() => logout()}>

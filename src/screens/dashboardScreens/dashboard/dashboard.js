@@ -16,13 +16,36 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {AuthContext} from '../../../services/firebase/authProvider';
+import { get_dashboard_data, get_expense_types, get_items_list, get_projects_list, get_suppliers_list } from '../../../services/endPoints';
+import { useDispatch, useSelector } from 'react-redux';
+import { addExpenseTypes, addItems, addProjects, addStats, addSuppliers } from '../../../redux/actions/userAction';
 
 const Dashboard = ({navigation}) => {
+  const dispatch = useDispatch();
+  const Stats = useSelector(state => state.user.stats);
   const [isLoading, setLoading] = useState(false);
   const {user, logout} = useContext(AuthContext);
+  
   useEffect(() => {
+    // console.log('Stats',Stats)
     session();
+    if(Stats == null || Stats == undefined || Stats == [] || Stats == ''){
+      getData()
+    }
   }, []);
+  const getData =async () =>{
+    console.log('getData')
+    const stat = await get_dashboard_data();
+    dispatch(addStats(stat));
+    // const items = await get_items_list();
+    // dispatch(addItems(items));
+    // const projects = await get_projects_list();
+    // dispatch(addProjects(projects));
+    // const etypes = await get_expense_types();
+    // dispatch(addExpenseTypes(etypes));
+    // const suppliers = await get_suppliers_list();
+    // dispatch(addSuppliers(suppliers));
+  }
   const session = async () => {
     const jsonValue = await AsyncStorage.getItem('lastTime');
     if (jsonValue != null) {
@@ -66,7 +89,7 @@ const Dashboard = ({navigation}) => {
               color={'white'}
             />
           </TouchableOpacity>
-          <Text style={styles.username}>Hi , {user.name}</Text>
+          <Text style={styles.username}>Hi , {user.use_name}</Text>
           <View style={styles.leftIcons}>
             <TouchableOpacity
               activeOpacity={0.7}
@@ -83,7 +106,7 @@ const Dashboard = ({navigation}) => {
               <AntDesign name="addusergroup" size={50} color="white" />
               <View>
                 <Text style={styles.cardText}>Suppliers</Text>
-                <Text style={styles.cardText}>9</Text>
+                <Text style={styles.cardText}>{Stats?.suppliers}</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.card}>
@@ -94,7 +117,7 @@ const Dashboard = ({navigation}) => {
               />
               <View>
                 <Text style={styles.cardText}>Projects</Text>
-                <Text style={styles.cardText}>15</Text>
+                <Text style={styles.cardText}>{Stats?.projects}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -103,14 +126,14 @@ const Dashboard = ({navigation}) => {
               <AntDesign name="piechart" size={45} color="white" />
               <View>
                 <Text style={styles.cardText}>Expenses</Text>
-                <Text style={styles.cardText}>6,142,414</Text>
+                <Text style={styles.cardText}>{Stats?.expenses}</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.card}>
               <Ionicons name="md-people-sharp" size={45} color="white" />
               <View>
                 <Text style={styles.cardText}>Employees</Text>
-                <Text style={styles.cardText}>12</Text>
+                <Text style={styles.cardText}>{Stats?.employees}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -123,7 +146,7 @@ const Dashboard = ({navigation}) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate('RegisterDevice')}>
+              onPress={() => navigation.navigate('AddExpense')}>
               <View style={style.blueButton}>
                 <Text style={style.whiteButtonText}>Add Expense</Text>
               </View>

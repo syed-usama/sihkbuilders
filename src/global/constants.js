@@ -3,3 +3,4 @@ export const constants ={
     mobile : "cYI2rNxXMzzaxCNaztcv",
     vehicle : "AcZh1GZFPSAIaWKpU6ps"
 }
+export const baseUrl ="https://sandbox.sihkbuilders.com/api/";

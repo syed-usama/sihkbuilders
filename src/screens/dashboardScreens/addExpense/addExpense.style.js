@@ -7,24 +7,25 @@ import colors from '../../../Assets/colors/colors';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: colors.primary,
     },
     main:{
         backgroundColor: 'white',
-        marginTop:-hp(5),
-        height:hp(90),
-        borderTopLeftRadius: 40,
-      borderTopRightRadius:40,
-      paddingTop:hp(2),
+        height:hp(86),
       paddingHorizontal:wp(3),
     },
-    mainx:{},
+    mainx:{
+      backgroundColor: 'white',
+        height:hp(4),
+        borderTopLeftRadius: 40,
+      borderTopRightRadius:40,
+    },
     backButton:{
         marginLeft: 10,
         marginTop: 25,
     },
     header: {
-        height:hp(15),
+        height:hp(10),
         backgroundColor:colors.primary,
         flexDirection: 'row',
         justifyContent:'space-between',
@@ -47,16 +48,7 @@ export default StyleSheet.create({
         borderColor:'grey',
         borderRadius:10
     },
-    checkIcon:{
-        position:'absolute',
-        right:30,
-        top:15,
-        paddingTop:1,
-        backgroundColor:'#3ce630',
-     borderRadius:10,
-     borderWidth:1,
-    borderColor:'grey'
-},
+    
     line:{
         marginTop:5,
         backgroundColor:'grey',
@@ -84,4 +76,63 @@ export default StyleSheet.create({
         fontSize:18,
         color : "black"
     },
+    checkIcon:{
+        position:'absolute',
+        right:30,
+        top:15,
+        paddingTop:1,
+        backgroundColor:'#3ce630',
+     borderRadius:10,
+     borderWidth:1,
+    borderColor:'grey'
+},
+itemWrapper1:{
+    height:180,
+    width:wp(45),
+    marginHorizontal:wp(2.5),
+    elevation:3,
+    borderRadius:5,
+    paddingVertical:15,
+    marginTop:10,
+},
+
+sheetItem1:{
+    fontFamily:'Axiforma-Regular',
+    fontSize:16,
+    textAlign:'center',
+    color : "black",
+},
+sheetItem2:{
+    fontFamily:'Axiforma-Regular',
+    fontSize:12,
+    fontWeight:'600',
+    color : "black",
+    marginLeft:10,
+},
+sheetItem3:{
+    fontFamily:'Axiforma-Regular',
+    fontSize:12,
+    color : "black",
+    textAlign:'center',
+},
+
+checkIcon1:{
+    position:'absolute',
+    right:12,
+    top:13,
+    paddingTop:1,
+    backgroundColor:'#3ce630',
+    borderRadius:10,
+    borderWidth:1,
+    borderColor:'grey'
+},
+error: {
+    fontFamily: 'Axiforma-Regular',
+    fontWeight: '400',
+    fontSize: 12,
+    marginLeft: wp(6),
+    marginTop: 2,
+    color: 'red',
+  },
+
 });

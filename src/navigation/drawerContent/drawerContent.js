@@ -30,8 +30,8 @@ export function DrawerContent(props) {
                                 color={colors.white}
                             />
                             <View style={{flex:1, justifyContent:"flex-end"}}>
-                                <Title style={styles.title}> {user?.name ? user?.name : '@Username'}</Title>
-                                {user?.email ?<Caption style={styles.caption}>{user?.email}</Caption>:
+                                <Title style={styles.title}> {user?.use_name ? user?.use_name : '@Username'}</Title>
+                                {user?.use_email ?<Caption style={styles.caption}>{user?.use_email}</Caption>:
                                 <Caption style={styles.caption}>user_email@mail.com</Caption>}
                             </View>
                         </View>

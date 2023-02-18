@@ -48,14 +48,18 @@ const Onboarding5 = ({ navigation }) => {
         showToast("Email and Password Required")
         setLoading(false);
       } else {
-        StoreDate();
-        storeDetails();
         login(email, password, changeLoader);
       }
     }
   };
-  const changeLoader = () => {
-    setLoading(false);
+  const changeLoader = (res) => {
+    if(res){
+      StoreDate();
+      storeDetails();
+      setLoading(false);
+    }else{
+      setLoading(false);
+    }
   };
   const changetouchid = () => {
     settouchid(true);
@@ -77,7 +81,6 @@ const Onboarding5 = ({ navigation }) => {
   const storeDetails = async () => {
     if (remember || biometric) {
       try {
-        await AsyncStorage.setItem('useremail', email);
         await AsyncStorage.setItem('useremail', email);
         await AsyncStorage.setItem('userpassword', password);
       } catch (e) {
@@ -139,7 +142,6 @@ const Onboarding5 = ({ navigation }) => {
   useEffect(() => {
     if (touchid) {
       setLoading(true);
-      StoreDate();
       login(useremail, userpassword, changeLoader);
     }
   }, [touchid])
@@ -198,6 +200,7 @@ const Onboarding5 = ({ navigation }) => {
               <TextInput
                 placeholder="Enter password"
                 placeholderTextColor={'#949693'}
+                autoCapitalize='none'
                 style={style.textfieldText}
                 secureTextEntry={visible}
                 value={password}

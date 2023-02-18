@@ -23,7 +23,7 @@ export default StyleSheet.create({
   headerText:{
     fontFamily: 'Axiforma-Regular',
     fontWeight: '900',
-    fontSize: 32,
+    fontSize: 28,
     color: '#FFFFFF',
     marginTop: 10,
     marginBottom: 15,

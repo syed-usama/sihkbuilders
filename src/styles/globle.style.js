@@ -5,8 +5,9 @@ export default StyleSheet.create({
   loader: {
     zIndex: 100,
     position: 'absolute',
-    height: hp('100%'), 
-    width: wp('100%'),
+    marginTop:hp(10),
+    height: hp(90), 
+    width: wp(100),
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -3,29 +3,28 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from 'react-native-responsive-screen';
-import colors from '../../../Assets/colors/colors';
+import colors from '../../Assets/colors/colors';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:colors.secondary,
+        backgroundColor: 'white',
     },
     main:{
         backgroundColor: 'white',
-        height:hp(86),
-      paddingHorizontal:wp(3),
-    },
-    mainx:{
-      backgroundColor: 'white',
-        height:hp(4),
+        marginTop:-hp(5),
+        height:hp(90),
         borderTopLeftRadius: 40,
       borderTopRightRadius:40,
+      paddingTop:hp(2),
+      paddingHorizontal:wp(3),
     },
+    mainx:{},
     backButton:{
         marginLeft: 10,
         marginTop: 25,
     },
     header: {
-        height:hp(10),
+        height:hp(15),
         backgroundColor:colors.secondary,
         flexDirection: 'row',
         justifyContent:'space-between',
@@ -62,21 +61,11 @@ export default StyleSheet.create({
       },
       textfield: {
         flexDirection: 'row',
-        paddingHorizontal:15,
         backgroundColor: '#F2F2F2',
         height: 45,
-        width:wp(25),
         borderRadius: 6,
         marginTop: 5,
-      },
-      textfield1: {
-        flexDirection: 'row',
-        paddingHorizontal:15,
-        backgroundColor: '#F2F2F2',
-        height: 45,
-        width:wp(50),
-        borderRadius: 6,
-        marginTop: 5,
+        alignItems:'center'
       },
       row:{
         flexDirection:'row',
