@@ -21,7 +21,7 @@ import {
 import colors from '../../Assets/colors/colors';
 
 import { useSelector} from 'react-redux';
-FontAwesome.loadFont();
+//FontAwesome.loadFont();
 const AddPurchaseComp = ({navigation,citem,index,removeItem,updateValues,totalAmount}) => {
   const {items} = useSelector(state => state.user);
   const [pitem, setItem] = useState({ite_name: citem.ite_name ? citem.ite_name:'-- Select --',ite_unit: citem?.ite_unit});

@@ -14,6 +14,9 @@ import {
   View,
   Image,
   ActivityIndicator,
+  StatusBar,
+  SafeAreaView,
+  Platform,
 } from 'react-native';
 import {AuthContext} from '../../../services/firebase/authProvider';
 import { get_dashboard_data, get_expense_types, get_items_list, get_projects_list, get_suppliers_list } from '../../../services/endPoints';
@@ -65,7 +68,8 @@ const Dashboard = ({navigation}) => {
     }
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.container,{marginTop:Platform.OS == 'ios' ? -20 : 0}]}>
+      {/* <StatusBar backgroundColor= {colors.primary} color={colors.primary}/> */}
       {isLoading ? (
         <View style={style.loader}>
           <ActivityIndicator size={50} color={colors.primary} />
@@ -154,7 +158,7 @@ const Dashboard = ({navigation}) => {
           </View>
         </View>
       </LinearGradient>
-    </View>
+    </SafeAreaView>
   );
 };
 export default Dashboard;

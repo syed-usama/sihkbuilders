@@ -39,7 +39,7 @@ import {
 } from '../../../redux/actions/userAction';
 import {showToast} from '../../../services/toast/shortToast';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
-FontAwesome.loadFont();
+//FontAwesome.loadFont();
 const AddExpense = ({navigation, route}) => {
   const {projects, expenseTypes, suppliers, employees} = useSelector(
     state => state.user,
@@ -232,7 +232,7 @@ const AddExpense = ({navigation, route}) => {
     add_Expense(xdata, changeLoader);
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container,{marginTop:Platform.OS == 'ios' ? -20 : 0}]}>
       {isLoading ? (
         <View style={style.loader}>
           <ActivityIndicator size={50} color={colors.primary} />
@@ -256,7 +256,7 @@ const AddExpense = ({navigation, route}) => {
       <View style={styles.mainx}></View>
         <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>
           <View>
-            <Text style={[style.label,{marginTop:2}]}>Project *</Text>
+            <Text style={[style.label,{marginTop:4}]}>Project *</Text>
             <TouchableOpacity
               style={style.textfield2}
               onPress={() => {

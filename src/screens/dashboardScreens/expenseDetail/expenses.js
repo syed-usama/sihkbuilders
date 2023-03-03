@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity,ScrollView } from "react-native";
+import { View, Text, TouchableOpacity,ScrollView, SafeAreaView, StatusBar, Platform } from "react-native";
 import React,{useState,useEffect} from "react";
 import styles from "./expenses.style";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -103,6 +103,8 @@ function Expenses({navigation}){
       setLoading(false)
     }
   return (
+    <SafeAreaView style={{backgroundColor:colors.primary,marginTop:Platform.OS == 'ios' ? -20 : 0}}>
+      {/* <StatusBar backgroundColor= {colors.primary} /> */}
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={()=> setVisible(false)}>
       {isLoading ? (
         <View style={globleStyle.loader}>
@@ -216,6 +218,7 @@ function Expenses({navigation}){
     )}/>
       </View>
     </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 

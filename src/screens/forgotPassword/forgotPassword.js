@@ -17,7 +17,7 @@ import styles from './forgotPassword.style';
 import {AuthContext} from '../../services/firebase/authProvider';
 import colors from '../../Assets/colors/colors';
 import { showToast } from '../../services/toast/shortToast';
-FontAwesome.loadFont();
+//FontAwesome.loadFont();
 const ForgotPassword = ({navigation}) => {
   const [email, setemail] = useState('');
   const [response, setresponse] = useState('');

@@ -10,6 +10,7 @@ export default StyleSheet.create({
         backgroundColor: colors.primary,
     },
     main:{
+        marginTop:-1,
         backgroundColor: 'white',
         height:hp(86),
       paddingHorizontal:wp(3),

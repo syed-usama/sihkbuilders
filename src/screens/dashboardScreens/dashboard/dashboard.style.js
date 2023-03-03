@@ -7,7 +7,7 @@ import colors from '../../../Assets/colors/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.primary,
   },
   linearGradient: {
     flex: 1,

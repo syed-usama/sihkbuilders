@@ -11,7 +11,7 @@ import style from '../../../styles/globle.style';
 import styles from './notifications.style';
 import {AuthContext} from '../../../services/firebase/authProvider';
 import colors from '../../../Assets/colors/colors';
-FontAwesome.loadFont();
+//FontAwesome.loadFont();
 const Notifications = ({navigation,route}) => {
   const [isLoading, setLoading] = useState(false);
   const {user} = useContext(AuthContext);

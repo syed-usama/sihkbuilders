@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, SafeAreaView, Platform} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import styles from './detailScreen.style';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -40,7 +40,7 @@ function DetailScreen({navigation, route}) {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.container,{marginTop:Platform.OS == 'ios' ? -20 : 0}]}>
       {isLoading ? (
         <View style={globleStyle.loader}>
           <ActivityIndicator size={50} color={colors.primary} />
@@ -128,7 +128,7 @@ function DetailScreen({navigation, route}) {
           )}
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

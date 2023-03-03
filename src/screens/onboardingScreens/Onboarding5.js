@@ -23,7 +23,7 @@ import styles from './onboarding5.styles';
 import { AuthContext } from '../../services/firebase/authProvider';
 import colors from '../../Assets/colors/colors';
 import { showToast } from '../../services/toast/shortToast';
-FontAwesome.loadFont();
+//FontAwesome.loadFont();
 const Onboarding5 = ({ navigation }) => {
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');

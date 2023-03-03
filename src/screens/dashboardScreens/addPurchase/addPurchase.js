@@ -42,7 +42,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import AddPurchaseComp from '../../../components/addPurchaseComp/addPurchaseComp';
 import {showToast} from '../../../services/toast/shortToast';
 import { widthPercentageToDP } from 'react-native-responsive-screen';
-FontAwesome.loadFont();
+//FontAwesome.loadFont();
 const AddPurchase = ({navigation, route}) => {
   const {stats, projects, items, expenseTypes, suppliers} = useSelector(
     state => state.user,
@@ -234,7 +234,7 @@ const AddPurchase = ({navigation, route}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container,{marginTop:Platform.OS == 'ios' ? -20 : 0}]}>
       {isLoading ? (
         <View style={style.loader}>
           <ActivityIndicator size={50} color={colors.primary} />
@@ -257,7 +257,7 @@ const AddPurchase = ({navigation, route}) => {
       <View style={styles.mainx}></View>
       <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>
         <View>
-        <Text style={[style.label,{marginTop:2}]}>Project *</Text>
+        <Text style={[style.label,{marginTop:4}]}>Project *</Text>
           <TouchableOpacity
             style={style.textfield2}
             onPress={() => {

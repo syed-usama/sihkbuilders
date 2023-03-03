@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity,ScrollView } from "react-native";
+import { View, Text, TouchableOpacity,ScrollView, SafeAreaView } from "react-native";
 import React,{useState,useEffect} from "react";
 import styles from "./purchaseDetail.style";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -104,6 +104,7 @@ function PurchaseDetail({navigation}){
       setLoading(false)
     }
   return (
+    <SafeAreaView style={{backgroundColor:colors.primary , marginTop:Platform.OS == 'ios' ? -20 : 0}}>
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={()=> setVisible(false)}>
       {isLoading ? (
         <View style={globleStyle.loader}>
@@ -216,6 +217,7 @@ function PurchaseDetail({navigation}){
     )}/>
       </View>
     </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
